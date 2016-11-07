@@ -1,24 +1,14 @@
 <?php
 session_start();
+if (isset($_SESSION['price'])) {
+	session_unset();
+	session_destroy();
+}
+require_once dirname(__FILE__).'/classes/forms.php';
+FormFields::mainWrapper();
+unset($paymentMethod);
+echo $price = rand(100,999);
 ?>
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="author" content="Yahir Hernández Cano">
-		<meta name="description" content="Conekta API test">
-		<title>Conekta</title>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-		<link rel="stylesheet" href="/../css/milligram/dist/milligram.min.css">
-	</head>
-	<body>
-
-	<main class="wrapper">
-	    <section class="container">
-	      <img class="img" src="https://s3.amazonaws.com/conekta.static/business/_layout/conekta_logo.svg" height="30">
-	    </section>
-			<section>
-<!-- Main start -->
         <form action="customer_info.php" method="POST">
           <fieldset>
             <div class="container">
@@ -43,7 +33,7 @@ session_start();
 										<option value="SPEIPayment">SPEI</option>
 										<option value="banortePayment">Banorte</option>
 									</select>
-									<input type="hidden" name="price" value="<?php echo $price = rand(100, 999); ?>"/>
+									<input type="hidden" name="price" value="<?php echo $price; ?>"/>
 									<h1><b>Total: </b>$<?php echo $price; ?> MXN</h1>
 									<input class="button-primary" type="submit" value="Pagar!">
 								</div>
@@ -58,7 +48,3 @@ session_start();
 		<script src="https://milligram.github.io/js/script.js"></script>
 	</body>
 </html>
-<?php
-session_unset();
-session_destroy();
-?>

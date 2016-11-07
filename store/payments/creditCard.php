@@ -33,7 +33,7 @@ $(function () {
     $form.find("button").prop("disabled", true);
     //Conekta.Token.create($form, conektaSuccessResponseHandler, conektaErrorResponseHandler); //v5+
     console.log($form.serialize());
-    return false;
+    return true;
   });
 });
 </script>
